@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Add Expense</ion-title>
+<!--    <ion-button slot="end" (click)="dismiss()" fill="solid">-->
+      <ion-icon name="close-outline" (click)="dismiss()" slot="end" size="large"></ion-icon>
+<!--    </ion-button>-->
+  </ion-toolbar>
+</ion-header>
+<!---->
+<ion-content>
+<form [formGroup]="addExpense">
+<ion-item>
+  <ion-input placeholder="Type Amount" type="number" formControlName="amount"></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-input placeholder="Type Description" type="text" formControlName="description"></ion-input>
+</ion-item>
+
+  <ion-item>
+    <ion-label>Select Type</ion-label>
+    <ion-select value="" okText="Ok" cancelText="Cancel" formControlName="type" interface="popover">
+      <ion-select-option [value]="type.value" *ngFor="let type of expenseTypes | keyvalue">{{type.value}}</ion-select-option>
+
+    </ion-select>
+  </ion-item>
+  <br/>
+  <ion-button color="primary" expand="block" fill="solid" (click)="initCrateExpense()"
+              [disabled]="!addExpense.valid" >Add</ion-button>
+<!--  <ion-grid>-->
+<!--    -->
+<!--&lt;!&ndash;    <ion-row>&ndash;&gt;-->
+<!--&lt;!&ndash;      <ion-col size="6">&ndash;&gt;-->
+<!--&lt;!&ndash;        &ndash;&gt;-->
+<!--&lt;!&ndash;      </ion-col>&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;      <ion-col size="6">&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;        <ion-button color="danger" expand="block" fill="solid">Cancel</ion-button>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;      </ion-col>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;    </ion-row>&ndash;&gt;-->
+<!--  </ion-grid>-->
+
+<!--  <ion-button color="primary" expand="block" fill="solid"></ion-button>-->
+
+
+</form>
+</ion-content>
