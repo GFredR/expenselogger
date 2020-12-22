@@ -24,7 +24,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   datesSubscription: SubscriptionLike;
   totalSubscription: SubscriptionLike;
   todayTotal: number;
-
+  filterByPrice: boolean;
+  filterByPriceUp: boolean;
   constructor(private modalController: ModalController,
               private dataService: DataService,
               private actionService: ActionService,
@@ -109,6 +110,33 @@ export class DashboardComponent implements OnInit, OnDestroy {
       }
     });
     this.expenses = tempList;
+  }
+  priceFilterUp(): void {
+    this.expenses = this.expenses.sort((a, b) => {
+          if (a.amount > b.amount) {
+            return this.filterByPriceUp ? 1 : -1;
+          }
+          if (b.amount > a.amount) {
+            return this.filterByPriceUp ? -1 : 1;
+          }
+          return 0;
+        }
+    );
+    this.filterByPriceUp = true;
+  }
+  priceFilter(): void {
+    this.expenses = this.expenses.sort((a, b) => {
+      if (a.amount > b.amount) {
+        return this.filterByPriceUp ? 1 : -1;
+      }
+      if (b.amount > a.amount) {
+        return this.filterByPriceUp ? -1 : 1;
+      }
+      return 0;
+    }
+    );
+    this.filterByPrice = true;
+    this.filterByPriceUp = !this.filterByPriceUp;
   }
   async presentFilterActionSheet() {
     const actionSheet = await this.actionSheetController.create({
