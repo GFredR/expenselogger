@@ -33,10 +33,11 @@ export class AddExpenseComponent implements OnInit {
     console.log(this.addExpense.value);
   }
   initCrateExpense(): void {
-    const expense = this.addExpense.value;
+    const expense: Expenseinterface = this.addExpense.value;
+    expense.amount = Number(Number(expense.amount).toFixed(2));
     this.dateTimeService.getSelectedDate().then((date) => {
       if (!expense.createdOn) {
-        expense.createdOn = this.dateTimeService.getDateTimeString(date);
+        expense.createdOn = date;
       }
     }).then(() => {
       this.actionService.createExpense(expense).then(() => {
