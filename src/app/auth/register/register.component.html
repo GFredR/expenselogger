@@ -11,15 +11,16 @@
     </ion-card-header>
 
     <ion-card-content>
+      <form [formGroup]="registerForm" (submit)="register()">
       <ion-item-group>
         <ion-item lines="full">
-          <ion-input placeholder="Name"></ion-input>
+          <ion-input placeholder="Name" ></ion-input>
         </ion-item>
         <ion-item lines="full">
-          <ion-input placeholder="Email"></ion-input>
+          <ion-input placeholder="Email" formControlName="email"></ion-input>
         </ion-item>
         <ion-item lines="full">
-          <ion-input placeholder="Password"></ion-input>
+          <ion-input placeholder="Password" formControlName="password"></ion-input>
         </ion-item>
         <ion-item lines="full">
           <ion-input placeholder="Confirm Password"></ion-input>
@@ -27,8 +28,9 @@
         <!--        <ion-item>-->
 
         <!--        </ion-item>-->
+        <ion-button size="" expand="block" [disabled]="!registerForm.valid"> Register </ion-button>
       </ion-item-group>
-      <ion-button size="" expand="block"> Register </ion-button>
+      </form>
       <ion-item lines="none" (click)="navgatetoLogin()">
         <ion-label >Login</ion-label>
       </ion-item>

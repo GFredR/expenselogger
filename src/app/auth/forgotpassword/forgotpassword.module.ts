@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ForgotpasswordRoutingModule } from './forgotpassword-routing.module';
 import {IonicModule} from '@ionic/angular';
+import {AppFormsModule} from '../../core/modules/app-forms.module';
 
 
 @NgModule({
@@ -10,7 +11,8 @@ import {IonicModule} from '@ionic/angular';
   imports: [
     CommonModule,
     ForgotpasswordRoutingModule,
-      IonicModule
+      IonicModule,
+      AppFormsModule
   ]
 })
 export class ForgotpasswordModule { }

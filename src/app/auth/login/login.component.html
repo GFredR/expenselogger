@@ -11,18 +11,18 @@
     </ion-card-header>
 
     <ion-card-content>
-      <ion-item-group>
-        <ion-item lines="full">
-          <ion-input placeholder="Email"></ion-input>
-        </ion-item>
-        <ion-item lines="full">
-          <ion-input placeholder="Password"></ion-input>
-        </ion-item>
-<!--        <ion-item>-->
+      <form [formGroup]="login" (ngSubmit)="doLogin()">
+<!--        <ion-item-group>-->
+          <ion-item lines="full">
+            <ion-input placeholder="Email" formControlName="email" ></ion-input>
+          </ion-item>
+          <ion-item lines="full">
+            <ion-input placeholder="Password" formControlName="password" ></ion-input>
+          </ion-item>
+<!--        </ion-item-group>-->
+        <ion-button expand="block" (click)="doLogin()" [disabled]="!login.valid"> Login </ion-button>
+      </form>
 
-<!--        </ion-item>-->
-      </ion-item-group>
-      <ion-button size="" expand="block"> Login </ion-button>
       <ion-item lines="none" (click)="navgatetoForgotPassword()">
         <ion-label >Forgot Password?</ion-label>
       </ion-item>

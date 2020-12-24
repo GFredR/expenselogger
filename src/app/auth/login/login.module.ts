@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import {RouterModule} from '@angular/router';
 import {LoginComponent} from './login.component';
 import {IonicModule} from '@ionic/angular';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {AppFormsModule} from '../../core/modules/app-forms.module';
 
 
 
@@ -12,7 +14,10 @@ import {IonicModule} from '@ionic/angular';
   imports: [
     CommonModule,
       RouterModule.forChild([{path: '', component: LoginComponent}]),
-      IonicModule
+      IonicModule,
+      FormsModule,
+      AppFormsModule,
+      ReactiveFormsModule
   ]
 })
 export class LoginModule { }
