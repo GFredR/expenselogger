@@ -10,7 +10,7 @@ import {AppFormsModule} from '../../core/modules/app-forms.module';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [LoginComponent],
   imports: [
     CommonModule,
       RouterModule.forChild([{path: '', component: LoginComponent}]),

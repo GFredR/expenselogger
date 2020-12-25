@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
+import {AngularFireAuth} from '@angular/fire/auth';
 
 @Component({
   selector: 'app-login',
@@ -8,11 +9,13 @@ import {FormGroup, FormControl, Validators} from '@angular/forms';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  private login: FormGroup = new FormGroup({
-    email: new FormControl('', Validators.required),
+  addLog: FormGroup = new FormGroup({
+    email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', Validators.required)
   });
-  constructor(private router: Router) { }
+  constructor(private router: Router, private fireAuth: AngularFireAuth) {
+
+  }
 
   ngOnInit() {}
   navgatetoRegister(): void {
@@ -22,6 +25,13 @@ export class LoginComponent implements OnInit {
     this.router.navigateByUrl('auth/forgotpassword');
   }
   doLogin(): void {
-    console.log(this.login.value);
+    console.log(this.addLog.value);
+    const loginFormValues = this.addLog.value;
+    this.fireAuth.signInWithEmailAndPassword(
+        loginFormValues.email,
+        loginFormValues.password
+    ).then((res) => {
+      console.log(res);
+    });
   }
 }

@@ -8,8 +8,8 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./forgotpassword.component.scss'],
 })
 export class ForgotpasswordComponent implements OnInit {
-  private forgotPasswordForms: FormGroup = new FormGroup({
-    email: new FormControl('', Validators.email)
+   forgotPasswordForms: FormGroup = new FormGroup({
+    email: new FormControl('', [Validators.required, Validators.email])
   });
   constructor(private router: Router) { }
 
