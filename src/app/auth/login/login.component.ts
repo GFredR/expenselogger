@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {AngularFireAuth} from '@angular/fire/auth';
+import {AuthService} from '../services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,8 @@ export class LoginComponent implements OnInit {
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', Validators.required)
   });
-  constructor(private router: Router, private fireAuth: AngularFireAuth) {
+  constructor(private router: Router, private fireAuth: AngularFireAuth,
+              private  authService: AuthService) {
 
   }
 
@@ -25,13 +27,19 @@ export class LoginComponent implements OnInit {
     this.router.navigateByUrl('auth/forgotpassword');
   }
   doLogin(): void {
-    console.log(this.addLog.value);
-    const loginFormValues = this.addLog.value;
-    this.fireAuth.signInWithEmailAndPassword(
-        loginFormValues.email,
-        loginFormValues.password
-    ).then((res) => {
+    this.authService.loginWithEmailAndPassword(
+        this.addLog.value.email,
+        this.addLog.value.password
+    ).subscribe((res) => {
       console.log(res);
     });
+    // console.log(this.addLog.value);
+    // const loginFormValues = this.addLog.value;
+    // this.fireAuth.signInWithEmailAndPassword(
+    //     loginFormValues.email,
+    //     loginFormValues.password
+    // ).then((res) => {
+    //   console.log(res);
+    // });
   }
 }
